@@ -173,7 +173,7 @@ class Router implements RouterInterface
      */
     protected function generateI18n($name, $locale, $parameters, $referenceType = self::ABSOLUTE_PATH)
     {
-        if (!in_array($locale, $this->allowedLocales)) {
+        if (count($this->allowedLocales) > 0 && !in_array($locale, $this->allowedLocales)) {
             throw new RouteNotFoundException(sprintf('This locale (%s) does not supported.', $locale));
         }
         
