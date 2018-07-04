@@ -19,6 +19,7 @@
             <argument type="service" id="be_simple_i18n_routing.translator" on-invalid="null" />
             <argument>%be_simple_i18n_routing.default_locale%</argument>
             <argument type="service" id="be_simple_i18n_routing.route_name_inflector" />
+            <argument>%be_simple_i18n_routing.allowed%</argument>
         </service>
 
         <!-- Route loaders -->
