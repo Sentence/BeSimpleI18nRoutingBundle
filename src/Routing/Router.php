@@ -34,6 +34,8 @@ class Router implements RouterInterface
      */
     private $routeNameInflector;
 
+    private $allowedLocales;
+
     /**
      * Constructor
      *
@@ -41,12 +43,13 @@ class Router implements RouterInterface
      * @param Translator\AttributeTranslatorInterface|null $translator
      * @param string                                       $defaultLocale
      */
-    public function __construct(RouterInterface $router, AttributeTranslatorInterface $translator = null, $defaultLocale = null, RouteNameInflectorInterface $routeNameInflector = null)
+    public function __construct(RouterInterface $router, AttributeTranslatorInterface $translator = null, $defaultLocale = null, RouteNameInflectorInterface $routeNameInflector = null, $allowedLocales = [])
     {
         $this->router = $router;
         $this->translator = $translator;
         $this->defaultLocale = $defaultLocale;
         $this->routeNameInflector = $routeNameInflector ?: new PostfixInflector();
+        $this->allowedLocales = $allowedLocales;
     }
 
     /**
@@ -170,6 +173,10 @@ class Router implements RouterInterface
      */
     protected function generateI18n($name, $locale, $parameters, $referenceType = self::ABSOLUTE_PATH)
     {
+        if (!in_array($locale, $this->allowedLocales)) {
+            throw new RouteNotFoundException(sprintf('This locale (%s) does not supported.', $locale));
+        }
+        
         try {
             return $this->router->generate(
                 $this->routeNameInflector->inflect($name, $locale),

@@ -141,6 +141,7 @@ class BeSimpleI18nRoutingExtension extends Extension
 
         $container->setParameter('be_simple_i18n_routing.default_locale', $config['default_locale']);
         $container->setParameter('be_simple_i18n_routing.locales', $config['supported']);
+        $container->setParameter('be_simple_i18n_routing.allowed', $config['allowed']);
 
         // Configure the route generator
         $routeGenerator = 'be_simple_i18n_routing.route_generator.i18n';

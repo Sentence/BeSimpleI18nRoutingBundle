@@ -77,6 +77,10 @@ class Configuration implements ConfigurationInterface
                                  "'true' is the preferred configuration in development mode, while 'false' or 'null' might be preferred in production"
                             )
                         ->end()
+
+                        ->arrayNode('allowed')
+                            ->prototype('scalar')->end()
+                        ->end()
                     ->end()
                 ->end()
             ->end();

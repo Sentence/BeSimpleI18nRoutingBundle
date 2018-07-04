@@ -205,6 +205,7 @@ be_simple_i18n_routing:
     supported: ['en', 'nl']
     filter: true
     strict: true
+    allowed: ['en']
 ```
 
 The `locales.supported` specifies which locales are supported.
@@ -213,6 +214,8 @@ The `locales.filter` option is responsible for filtering out any unknown locales
 
 The `locales.strict` option when set to `true` is responsible for throwing a exception when a i18n route is found where the locale is unknown or where a locale is missing.
 This option can also be set to `null` to disable locale is missing for a route exception and `false` to disable exceptions.
+
+The `locales.allowed` specifies which locales are allowed, the rest will throw a RouteNotFoundException.
 
 ### Route naming
 
